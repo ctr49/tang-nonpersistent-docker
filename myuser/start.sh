@@ -34,6 +34,8 @@ fi
 
 sed -i "s/__PORT__/$PORT/" /home/myuser/nginx-reverse-tang && \
   nginx -c /home/myuser/nginx-reverse-tang -t && \
+  echo "Staring nginx with configuration:" && \
+  cat /home/myuser/nginx-reverse-tang && \
   nginx -c /home/myuser/nginx-reverse-tang &
 
 ### TANG ###
