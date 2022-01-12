@@ -77,5 +77,5 @@ fi
 
 if [ $? -eq 0 ]; then
   echo "Starting tang ..."
-  socat tcp-l:8080,reuseaddr,fork exec:"/usr/lib/x86_64-linux-gnu/tangd /var/cache/tang"
+  socat tcp-l:8080,reuseaddr,fork exec:"/usr/libexec/tangd /var/cache/tang"
 fi
