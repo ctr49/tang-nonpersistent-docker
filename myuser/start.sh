@@ -64,18 +64,9 @@ chk_files=($(ls -1A /var/db/tang))
 echo -e "Keys in /var/db/tang/:"
 ( IFS=$'\n'; echo "${chk_files[*]}" )
 
-# ... update cache if we have 2 or more keys (otherwise tang wouldn't work)
-if [ ${#chk_files[@]} -gt 1 ]; then
-  echo "Populating tang cache from DB ..."
-  /usr/lib/x86_64-linux-gnu/tangd-update /var/db/tang /var/cache/tang
-else
-  echo "Not enough keys in DB, check ENV for TANG_CURRENT_SV and TANG_CURRENT_DK values"
-  exit 1
-fi
-
 # start tang, wrapped by socat
 
 if [ $? -eq 0 ]; then
   echo "Starting tang ..."
-  socat tcp-l:8080,reuseaddr,fork exec:"/usr/libexec/tangd /var/cache/tang"
+  socat tcp-l:8080,reuseaddr,fork exec:"/usr/libexec/tangd /var/db/tang"
 fi

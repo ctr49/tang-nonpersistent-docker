@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 RUN apt-get update && apt-get -y install --no-install-recommends tang socat nginx
 RUN adduser --disabled-password myuser
-RUN mkdir -p /var/cache/tang /var/db/tang /run/nginx && chown -R myuser.myuser /var/cache/tang /var/db/tang /run/nginx /var/lib/nginx
+RUN mkdir -p /var/db/tang /run/nginx && chown -R myuser.myuser /var/db/tang /run/nginx /var/lib/nginx
 ADD --chown=myuser:myuser . /home/
 RUN chmod 755 /home/myuser/start.sh
 RUN rm -f /etc/nginx/sites-enabled/default
