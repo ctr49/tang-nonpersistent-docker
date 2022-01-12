@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:22.04
 RUN apt-get update && apt-get -y install --no-install-recommends tang socat nginx
 RUN adduser --disabled-password myuser
 RUN mkdir -p /var/cache/tang /var/db/tang /run/nginx && chown -R myuser.myuser /var/cache/tang /var/db/tang /run/nginx /var/lib/nginx
